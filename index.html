@@ -11,8 +11,21 @@
 </head>
 
 <body>
-  <div id="app">
-    <table>
+  <div class="container mt-3">
+    <form>
+      <label for="name">Név:</label>
+      <input class="form-control" type="text" id="name">
+      <label for="job_title">Munkakör:</label>
+      <input class="form-control" type="text" id="name">
+      <label for="entry_date">Belépés dátuma:</label>
+      <input class="form-control" type="text" id="entry_date">
+      <label for="imei">IMEI:</label>
+      <input class="form-control" type="text" id="imei">
+      <button class="btn btn-success mt-3" id="gomb">Feltöltés</button>
+    </form>
+  </div>
+  <div class="container mt-3" id="app">
+    <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>#</th>

@@ -1,4 +1,4 @@
-const api_url = "https://retoolapi.dev/8pmkIT/data";
+const api_url = "https://retoolapi.dev/YZM9ys/data";
 document.addEventListener("DOMContentLoaded", (init) );
 function init () {
   const data = document.getElementById("data");
