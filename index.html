@@ -10,16 +10,18 @@
 
 <body>
   <div class="container mt-3">
-    <form class="form">
+    <form class="form" id="dataForm">
+      <input type="hidden" id="id">
       <label for="name">Név:</label>
       <input class="form-control" type="text" id="name" required="true">
       <label for="job_title">Munkakör:</label>
       <input class="form-control" type="text" id="job_title" required="true">
-      <label for="entry_date">Belépés dátuma:</label>
-      <input class="form-control" type="date" id="entry_date" required="true">
+      <label for="company_name">Cég neve:</label>
+      <input class="form-control" type="text" id="company_name" required="true">
       <label for="imei">IMEI:</label>
       <input class="form-control" type="number" id="imei" required="true">
-      <button class="btn btn-success mt-3" id="gomb">Feltöltés</button>
+      <button id="uploadButton" type="submit">Upload</button>
+      <button id="resetButton" type="submit">Reset</button>
     </form>
   </div>
   <div class="container mt-3" id="app">
@@ -29,8 +31,9 @@
           <th>#</th>
           <th>Név</th>
           <th>Munkakör</th>
-          <th>Belépés Dátuma</th>
+          <th>Company Name</th>
           <th>IMEI</th>
+          <th>Műveletek</th>
         </tr>
       </thead>
       <tbody id="data">
