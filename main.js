@@ -100,6 +100,10 @@ async function deletePerson(id) {
     const success = 1;
     showAlert(success);
     loadTable(uploadButton);
+} else {
+  success =0;
+  showAlert(success);
+  loadTable(uploadButton);
 }
 }
 function resetForm() {
@@ -116,8 +120,14 @@ function showAlert(alertMessage) {
   alertDiv.setAttribute('role', 'alert');
   alertDiv.innerHTML = "<b>Success</b>";
   document.body.appendChild(alertDiv);
- 
+} else {
+  var alertDiv = document.createElement("div");
+  alertDiv.classList.add('alert', 'alert-danger', 'fade','show', 'fixed-top');
+  alertDiv.setAttribute('role', 'alert');
+  alertDiv.innerHTML = "<b>Failed</b>";
+  document.body.appendChild(alertDiv);
 }
+
 setTimeout(() => {
   document.body.removeChild(alertDiv);
 }, 3000);
