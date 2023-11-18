@@ -6,16 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.getElementById("resetButton");
   resetButton.classList.add('btn','btn-secondary','mt-3');
   resetButton.addEventListener("click", resetForm);
-  const uploadButton = document.getElementById("uploadButton");
-
   const dataForm = document.getElementById("dataForm");
   dataForm.addEventListener("submit", handleFormSubmit);
-  loadTable(uploadButton);
+  loadTable();
 
 });
 
-function loadTable(uploadButton) {
-
+function loadTable() {
+  const uploadButton = document.getElementById("uploadButton");
   const data = document.getElementById("data");
   fetch(api_url).then(httpResponse => httpResponse.json()).then(responseBody => {
     data.innerHTML = "";
@@ -36,7 +34,7 @@ function loadTable(uploadButton) {
 
       updateButton.classList.add('btn', 'btn-warning', 'mx-3');
       updateButton.textContent = "Update";
-      updateButton.addEventListener("click", () => fillForm(personData,uploadButton));
+      updateButton.addEventListener("click", () => fillForm(personData));
       idTableData.textContent = personData.id;
       nameTableData.textContent = personData.name;
       jobTitleTableData.textContent = personData.job_title;
@@ -89,7 +87,7 @@ async function addPerson(person) {
     const success = 1;
     showAlert(success);
   resetForm();
-  loadTable(uploadButton);
+  loadTable();
 }
 }
 async function deletePerson(id) {
@@ -99,11 +97,11 @@ async function deletePerson(id) {
   if(response.ok) {
     const success = 1;
     showAlert(success);
-    loadTable(uploadButton);
+    loadTable();
 } else {
   success =0;
   showAlert(success);
-  loadTable(uploadButton);
+  loadTable();
 }
 }
 function resetForm() {
@@ -132,7 +130,8 @@ setTimeout(() => {
   document.body.removeChild(alertDiv);
 }, 3000);
 }
-function fillForm(personData,uploadButton) {
+function fillForm(personData) {
+  uploadButton.classList.remove('btn-primary');
   uploadButton.classList.add('btn-warning');
   uploadButton.textContent = "Update";
   document.getElementById("id").value = personData.id;
@@ -140,4 +139,25 @@ function fillForm(personData,uploadButton) {
   document.getElementById("job_title").value = personData.job_title;
   document.getElementById("company_name").value = personData.company_name;
   document.getElementById("imei").value = personData.imei;
+
 }
+async function updatePerson(id,personInfo) {
+  debugger;
+  const response = await fetch(api_url + '/' + id, {
+   method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"},
+    body: JSON.stringify(personInfo)
+  });
+  if (response.ok) {
+    const success = 1;
+    showAlert(success);
+    resetForm();
+    uploadButton.classList.remove('btn-warning');
+    loadTable();
+  } else { 
+    success = 0;
+    showAlert(success);
+    loadTable();
+  
+}};
